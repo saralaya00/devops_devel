@@ -104,3 +104,10 @@ telnet-server: 2023/04/21 19:37:33 Metrics endpoint listening on :9000
 [pod/telnet-server-b546b8495-vlz2d/telnet-server] telnet-server: 2023/04/21 19:37:33 telnet-server listening on [::]:2323
 [pod/telnet-server-b546b8495-vlz2d/telnet-server] telnet-server: 2023/04/21 19:37:33 Metrics endpoint listening on :9000
 
+# CI - Chapter 8
+: 1682159516:0;skaffold dev --cleanup-false
+: 1682161028:0;minikube kubectl -- get services telnet-server
+: 1682161041:0;minikube tunnel
+: 1682161359:0;minikube kubectl -- rollout undo deployment telnet-server --to-revision=1
+: 1682161391:0;minikube kubectl get pods
+: 1682161415:0;telnet 10.108.200.178 2323
