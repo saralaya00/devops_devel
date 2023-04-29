@@ -111,3 +111,29 @@ telnet-server: 2023/04/21 19:37:33 Metrics endpoint listening on :9000
 : 1682161359:0;minikube kubectl -- rollout undo deployment telnet-server --to-revision=1
 : 1682161391:0;minikube kubectl get pods
 : 1682161415:0;telnet 10.108.200.178 2323
+
+# Monitoring - Chapter9
+$ minikube start 
+$ minikube kubectl -- apply -R -f monitoring/
+
+[~/devel/devops_for_the_desperate]$ minikube -n monitoring service grafana-service
+|------------|-----------------|-------------|-----------------------------|
+| NAMESPACE  |      NAME       | TARGET PORT |             URL             |
+|------------|-----------------|-------------|-----------------------------|
+| monitoring | grafana-service |        3000 | http://192.168.59.100:32739 |
+|------------|-----------------|-------------|-----------------------------|
+🎉  Opening service monitoring/grafana-service in default browser...
+[~/devel/devops_for_the_desperate]$ minikube -n monitoring service alertmanager-service
+|------------|----------------------|-------------------|-----------------------------|
+| NAMESPACE  |         NAME         |    TARGET PORT    |             URL             |
+|------------|----------------------|-------------------|-----------------------------|
+| monitoring | alertmanager-service | alertmanager/9093 | http://192.168.59.100:32018 |
+|------------|----------------------|-------------------|-----------------------------|
+🎉  Opening service monitoring/alertmanager-service in default browser...
+[~/devel/devops_for_the_desperate]$ minikube -n monitoring service prometheus-service
+|------------|--------------------|-------------|-----------------------------|
+| NAMESPACE  |        NAME        | TARGET PORT |             URL             |
+|------------|--------------------|-------------|-----------------------------|
+| monitoring | prometheus-service |        9090 | http://192.168.59.100:30794 |
+|------------|--------------------|-------------|-----------------------------|
+🎉  Opening service monitoring/prometheus-service in default browser...
