@@ -1,2 +1,2 @@
 # devops_devel
-dftd workdirectory
+devops generic workdirectory
